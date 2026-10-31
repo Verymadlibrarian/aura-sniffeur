@@ -16,4 +16,6 @@ func physics_update(delta: float) -> void:
 	if owner.is_on_floor():
 		state_machine.transition_to("Idle")
 	
+	owner.velocity.x = owner.direction * owner.walk_speed
+	
 	pass

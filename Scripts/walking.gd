@@ -10,6 +10,9 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
 	if owner.direction == 0:
 		state_machine.transition_to("Idle")
+	
+	if Input.is_action_just_pressed("jamp") and owner.is_on_floor():
+		state_machine.transition_to("InitJump")
 		
-	owner.velocity.x = owner.direction * owner.walk_speed
+	owner.velocity.x = owner.direction/abs(owner.direction) * owner.walk_speed
 	pass

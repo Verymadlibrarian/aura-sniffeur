@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://cjgib6qw8wy6a" path="res://Scripts/walking.gd" id="5_btmkv"]
 [ext_resource type="Script" uid="uid://clp6adu4k7sao" path="res://Scripts/inair.gd" id="7_gcnrf"]
 [ext_resource type="Script" uid="uid://b6rr0fowfkkf1" path="res://Scripts/running.gd" id="8_jc2l6"]
+[ext_resource type="Script" uid="uid://bxpnn1kn02nb2" path="res://Scripts/short_hop.gd" id="9_i72a2"]
+[ext_resource type="Script" uid="uid://dq4ysd66st3td" path="res://Scripts/init_jump.gd" id="10_snb1k"]
+[ext_resource type="Script" uid="uid://b6yqrost1dcj7" path="res://Scripts/dash.gd" id="11_hgu2h"]
+[ext_resource type="Script" uid="uid://cpf7pbb3pvnsh" path="res://Scripts/run_turn.gd" id="12_58y86"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2bk4"]
 
@@ -49,6 +53,18 @@ script = ExtResource("7_gcnrf")
 
 [node name="Running" type="Node" parent="Statemachine" unique_id=604528923]
 script = ExtResource("8_jc2l6")
+
+[node name="ShortHop" type="Node" parent="Statemachine" unique_id=879419796]
+script = ExtResource("9_i72a2")
+
+[node name="InitJump" type="Node" parent="Statemachine" unique_id=32541846]
+script = ExtResource("10_snb1k")
+
+[node name="Dash" type="Node" parent="Statemachine" unique_id=418924472]
+script = ExtResource("11_hgu2h")
+
+[node name="RunTurn" type="Node" parent="Statemachine" unique_id=1301105685]
+script = ExtResource("12_58y86")
 
 [node name="PlatteformeCollider" type="RayCast3D" parent="." unique_id=1091858090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63271356, 0)
