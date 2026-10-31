@@ -28,5 +28,5 @@ func _process(delta: float) -> void:
 		perso_1.set_collision_mask_value(1, false)
 		perso_1.set_collision_mask_value(2, true)
 	
-	print("1 : ",perso_1.get_collision_layer_value(1), ", 2 :",  perso_1.get_collision_layer_value(2))
+	#print("1 : ",perso_1.get_collision_layer_value(1), ", 2 :",  perso_1.get_collision_layer_value(2))
 	pass

@@ -1,30 +1,40 @@
-extends Node3D
-@onready var perso_1: CharacterBody3D = $".."
+extends Node
+class_name StateMachine
+@onready var idle: State = $Idle
+@export var initial_state: State #PIN
 
-enum Staets {IDLE, WALKING, JUPMING, FALING}
-var current_state: Staets = Staets.IDLE
 
-var frame = 0
+var current_state: State
 
-func add_frame():
-	frame +=1
-
-	pass # Replace with function body.
-func change_state(state):
-	current_state = state
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	await owner.ready
+	initial_state = idle
+	if initial_state == null:
+		push_error("StateMachine has no initial state assigned.")
+		return
+ 
+	current_state = initial_state
+	current_state.enter()
+	
+func _physics_process(delta: float) -> void:
+	owner.direction = Input.get_axis("move_letf", "move_ritgh")
+	current_state.physics_update(delta)
+	if not owner.is_on_floor():
+		owner.velocity.y -= owner.gravity / 3
+	owner.move_and_slide()
+	print(current_state)
+ 
 func _process(delta: float) -> void:
-	add_frame()
-	
-	match current_state:
-		Staets.IDLE:
-			pass
-		Staets.WALKING:
-			pass
-		Staets.JUPMING:
-			pass
-		Staets.FALING:
-			pass
-	
-	pass
+	current_state.update(delta)
+ 
+func transition_to(target_state_name: String) -> void:
+	var target_state := get_node_or_null(target_state_name) as State
+	if target_state == null:
+		push_error("State '%s' not found." % target_state_name)
+		return
+	if target_state == current_state:
+		return
+ 
+	current_state.exit()
+	current_state = target_state
+	current_state.enter()

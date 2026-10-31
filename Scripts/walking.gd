@@ -1,11 +1,15 @@
-extends Node3D
+extends State
 
+@onready var player: CharacterBody3D = owner
+@onready var state_machine: StateMachine = get_parent()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func enter() -> void:
+	pass
+ 
+# Called every physics frame while this state is active
+func physics_update(delta: float) -> void:
+	if owner.direction == 0:
+		state_machine.transition_to("Idle")
+		
+	owner.velocity.x = owner.direction * owner.walk_speed
 	pass

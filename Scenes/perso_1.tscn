@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://b1vocau4vftvj"]
 
-[ext_resource type="Script" uid="uid://pcmruqrrltrq" path="res://Scripts/perso_1.gd" id="1_n3x6e"]
+[ext_resource type="Script" uid="uid://tcmu7gvrbhnw" path="res://Scripts/stats.gd" id="1_4bxhp"]
 [ext_resource type="Script" uid="uid://o1djo4ckp0wy" path="res://Scripts/CheckDeath.gd" id="2_88g4u"]
 [ext_resource type="Script" uid="uid://oc8h7g8nl4wg" path="res://Scripts/platteforme_collider.gd" id="3_gvmn0"]
 [ext_resource type="Script" uid="uid://d16jd0m7y6q0w" path="res://Scripts/idle.gd" id="4_j60xm"]
 [ext_resource type="Script" uid="uid://cgmytenk85ksv" path="res://Scripts/statemachine.gd" id="4_svx5w"]
+[ext_resource type="Script" uid="uid://cukrw8wp0rjng" path="res://Scripts/jumping.gd" id="5_4bxhp"]
 [ext_resource type="Script" uid="uid://cjgib6qw8wy6a" path="res://Scripts/walking.gd" id="5_btmkv"]
+[ext_resource type="Script" uid="uid://clp6adu4k7sao" path="res://Scripts/inair.gd" id="7_gcnrf"]
+[ext_resource type="Script" uid="uid://b6rr0fowfkkf1" path="res://Scripts/running.gd" id="8_jc2l6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2bk4"]
 
@@ -13,7 +16,7 @@
 
 [node name="perso1" type="CharacterBody3D" unique_id=1913145225]
 collision_mask = 2
-script = ExtResource("1_n3x6e")
+script = ExtResource("1_4bxhp")
 
 [node name="deathstandring" type="Area3D" parent="." unique_id=522878512]
 collision_layer = 4
@@ -37,6 +40,15 @@ script = ExtResource("4_j60xm")
 
 [node name="Walking" type="Node3D" parent="Statemachine" unique_id=1923716913]
 script = ExtResource("5_btmkv")
+
+[node name="Jumping" type="Node" parent="Statemachine" unique_id=1566541484]
+script = ExtResource("5_4bxhp")
+
+[node name="InAir" type="Node" parent="Statemachine" unique_id=2143278250]
+script = ExtResource("7_gcnrf")
+
+[node name="Running" type="Node" parent="Statemachine" unique_id=604528923]
+script = ExtResource("8_jc2l6")
 
 [node name="PlatteformeCollider" type="RayCast3D" parent="." unique_id=1091858090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63271356, 0)
