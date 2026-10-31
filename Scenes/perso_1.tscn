@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b1vocau4vftvj"]
+
+[ext_resource type="Script" uid="uid://pcmruqrrltrq" path="res://Scripts/perso_1.gd" id="1_n3x6e"]
+[ext_resource type="Script" uid="uid://o1djo4ckp0wy" path="res://Scripts/CheckDeath.gd" id="2_88g4u"]
+[ext_resource type="Script" uid="uid://oc8h7g8nl4wg" path="res://Scripts/platteforme_collider.gd" id="3_gvmn0"]
+[ext_resource type="Script" uid="uid://d16jd0m7y6q0w" path="res://Scripts/idle.gd" id="4_j60xm"]
+[ext_resource type="Script" uid="uid://cgmytenk85ksv" path="res://Scripts/statemachine.gd" id="4_svx5w"]
+[ext_resource type="Script" uid="uid://cjgib6qw8wy6a" path="res://Scripts/walking.gd" id="5_btmkv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2bk4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_r2bk4"]
+
+[node name="perso1" type="CharacterBody3D" unique_id=1913145225]
+collision_mask = 2
+script = ExtResource("1_n3x6e")
+
+[node name="deathstandring" type="Area3D" parent="." unique_id=522878512]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("2_88g4u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="deathstandring" unique_id=296557364]
+shape = SubResource("CapsuleShape3D_r2bk4")
+
+[node name="Hitbox" type="CollisionShape3D" parent="." unique_id=1260137793]
+shape = SubResource("CapsuleShape3D_r2bk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox" unique_id=252600678]
+mesh = SubResource("CapsuleMesh_r2bk4")
+
+[node name="Statemachine" type="Node3D" parent="." unique_id=354167672]
+script = ExtResource("4_svx5w")
+
+[node name="Idle" type="Node3D" parent="Statemachine" unique_id=1510358429]
+script = ExtResource("4_j60xm")
+
+[node name="Walking" type="Node3D" parent="Statemachine" unique_id=1923716913]
+script = ExtResource("5_btmkv")
+
+[node name="PlatteformeCollider" type="RayCast3D" parent="." unique_id=1091858090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63271356, 0)
+collision_mask = 3
+script = ExtResource("3_gvmn0")

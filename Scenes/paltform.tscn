@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://xigv5q45p13"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2bk4"]
+size = Vector3(5, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4xowi"]
+size = Vector3(5, 0.2, 5)
+
+[node name="platforme" type="Node3D" unique_id=679067739]
+
+[node name="Large_Paltforme_Collider" type="StaticBody3D" parent="." unique_id=1908839081 groups=["transparent_plaftorms"]]
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Large_Paltforme_Collider" unique_id=977798146]
+mesh = SubResource("BoxMesh_r2bk4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Large_Paltforme_Collider" unique_id=2118215680]
+shape = SubResource("BoxShape3D_4xowi")

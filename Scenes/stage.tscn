@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://0ptsrb6yd21f"]
+
+[ext_resource type="PackedScene" uid="uid://b1vocau4vftvj" path="res://Scenes/perso_1.tscn" id="1_6eo5e"]
+[ext_resource type="PackedScene" uid="uid://xigv5q45p13" path="res://Scenes/paltform.tscn" id="2_aees8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mrj6u"]
+size = Vector3(20, 0.5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v533x"]
+size = Vector3(20, 0.5, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss0s4"]
+size = Vector3(60, 40, 10)
+
+[node name="Stage" type="Node3D" unique_id=739668085]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=2106133050]
+collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=23070471]
+mesh = SubResource("BoxMesh_mrj6u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=233150398]
+shape = SubResource("BoxShape3D_v533x")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=200964589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9432757, 15.455662)
+fov = 50.0
+
+[node name="perso1" parent="." unique_id=1920791429 instance=ExtResource("1_6eo5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.352865, -0.27237988)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=433409789]
+transform = Transform3D(1, 0, 0, 0, 0.74413437, 0.66803, 0, -0.66803, 0.74413437, 0, 12.7077, 16.840933)
+
+[node name="platforme" parent="." unique_id=679067739 instance=ExtResource("2_aees8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5897217, 0)
+
+[node name="Blastzone" type="Area3D" parent="." unique_id=862962751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.22156, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blastzone" unique_id=1432372418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.811793, 0)
+shape = SubResource("BoxShape3D_ss0s4")
+
+[node name="SpawnPiont" type="Node3D" parent="." unique_id=456343348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.385536, 0)
