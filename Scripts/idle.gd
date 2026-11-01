@@ -2,8 +2,10 @@ extends State
 
 @onready var player: CharacterBody3D = owner
 @onready var state_machine: StateMachine = get_parent()
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 func enter() -> void:
+	animation_player.play("Idle")
 	owner.djump = 1
 	owner.velocity.x = 0
 	pass
@@ -24,5 +26,8 @@ func physics_update(delta: float) -> void:
 	
 	if not owner.is_on_floor():
 		state_machine.transition_to("InAir")
+	
+	if Input.is_action_pressed("Bumper"):
+		state_machine.transition_to("Shield")
 	
 	pass

@@ -11,3 +11,4 @@ var djump = 1
 var fall_speed_ceiling = -18
 var direction = 0
 var firction = 1
+var turned = 0

@@ -23,15 +23,43 @@ func _ready() -> void:
 	current_state.enter()
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("jamp"):
+		print("Jump")
+	
 	new_frame = frames
 	
 	owner.direction = Input.get_axis("move_letf", "move_ritgh")
+	
+	if owner.direction > 0 :
+		if not owner.turned:
+			pass
+		else:
+			owner.turned = 0
+			print("Rotation : ", owner.rotation.y)
+	elif owner.direction < 0:
+		if owner.turned == 1:
+			pass
+		else:
+			owner.turned = 1
+			print("Rotation : ", owner.rotation.y)
+			
+	if owner.turned:
+		owner.rotation.y = deg_to_rad(180)
+		
+	else:
+		owner.rotation.y = deg_to_rad(0)
+		
+	
+	
+	
+	
 	current_state.physics_update(delta)
 	if not owner.is_on_floor():
 		owner.velocity.y -= owner.gravity / 3
-	print("Velocity: ", owner.velocity.x)
+	#print("Velocity: ", owner.velocity.x)
 	owner.move_and_slide()
 	#print(current_state)
+	#print("Direction : ", owner.direction)
 	frame()
 	#print((frames-new_frame)/delta)
 	

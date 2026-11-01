@@ -13,12 +13,126 @@
 [ext_resource type="Script" uid="uid://dq4ysd66st3td" path="res://Scripts/init_jump.gd" id="10_snb1k"]
 [ext_resource type="Script" uid="uid://b6yqrost1dcj7" path="res://Scripts/dash.gd" id="11_hgu2h"]
 [ext_resource type="Script" uid="uid://cpf7pbb3pvnsh" path="res://Scripts/run_turn.gd" id="12_58y86"]
+[ext_resource type="Script" uid="uid://cmham1isu3sq2" path="res://Scripts/shield.gd" id="13_6kw3d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2bk4"]
+radius = 0.0005
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_r2bk4"]
+radius = 0.4925
+
+[sub_resource type="Animation" id="Animation_7ynoy"]
+resource_name = "Dash"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.48027962, 0.87711537, 1, 1, 0, 0, -0.48027962, 0.87711537)
+
+[sub_resource type="Animation" id="Animation_58y86"]
+resource_name = "Idle"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_oh84v"]
+resource_name = "InAir"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+
+[sub_resource type="Animation" id="Animation_1vjxo"]
+resource_name = "Init_Jump"
+length = 0.1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, 0, 0, 0, 1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/MeshInstance3D:mesh:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.09989602),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 2.0]
+}
+
+[sub_resource type="Animation" id="Animation_6nig3"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.09950329, 0.9950372)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/MeshInstance3D:mesh:height")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_or40g"]
+resource_name = "Run"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.23944832, 0.9709091, 1, 1, 0, 0, -0.23944832, 0.9709091)
+
+[sub_resource type="Animation" id="Animation_6kw3d"]
+resource_name = "Walk"
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, -0.09950329, 0.9950372, 1, 1, 0, 0, -0.09950331, 0.9950372)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kw3d"]
+_data = {
+&"Dash": SubResource("Animation_7ynoy"),
+&"Idle": SubResource("Animation_58y86"),
+&"InAir": SubResource("Animation_oh84v"),
+&"Init_Jump": SubResource("Animation_1vjxo"),
+&"RESET": SubResource("Animation_6nig3"),
+&"Run": SubResource("Animation_or40g"),
+&"Walk": SubResource("Animation_6kw3d")
+}
 
 [node name="perso1" type="CharacterBody3D" unique_id=1913145225]
+transform = Transform3D(0.9801982, 0.19801898, 0, -0.19801898, 0.9801982, 0, 0, 0, 1, 0, 0, 0)
 collision_mask = 2
 script = ExtResource("1_4bxhp")
 
@@ -66,7 +180,13 @@ script = ExtResource("11_hgu2h")
 [node name="RunTurn" type="Node" parent="Statemachine" unique_id=1301105685]
 script = ExtResource("12_58y86")
 
+[node name="Shield" type="Node" parent="Statemachine" unique_id=1186940147]
+script = ExtResource("13_6kw3d")
+
 [node name="PlatteformeCollider" type="RayCast3D" parent="." unique_id=1091858090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63271356, 0)
 collision_mask = 3
 script = ExtResource("3_gvmn0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=123271679]
+libraries/ = SubResource("AnimationLibrary_6kw3d")

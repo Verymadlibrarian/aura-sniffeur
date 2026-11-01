@@ -2,6 +2,7 @@ extends State
 
 
 @onready var state_machine: StateMachine = get_parent()
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func enter() -> void:
 	pass

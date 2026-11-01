@@ -2,8 +2,10 @@ extends State
 
 var direct
 @onready var state_machine: StateMachine = get_parent()
+@onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 
 func enter() -> void:
+	#animation_player.play("Dash")
 	owner.velocity.x = owner.direction/abs(owner.direction) * owner.dash_speed
 	direct = owner.direction / abs(owner.direction)
 	pass
