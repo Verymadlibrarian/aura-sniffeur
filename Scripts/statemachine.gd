@@ -23,6 +23,9 @@ func _ready() -> void:
 	current_state.enter()
 	
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_released("Coruch"):
+		owner.passingThrough = false
+	
 	if Input.is_action_just_pressed("jamp"):
 		print("Jump")
 	

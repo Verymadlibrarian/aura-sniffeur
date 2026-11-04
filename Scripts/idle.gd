@@ -12,7 +12,9 @@ func enter() -> void:
  
 # Called every physics frame while this state is active
 func physics_update(delta: float) -> void:
-	
+	if Input.is_action_pressed("Coruch"):
+		state_machine.transition_to("Crouch")
+		
 	if owner.direction != 0:
 		if abs(owner.direction) > 0.1 and abs(owner.direction) < 0.15:
 			state_machine.transition_to("Walking")
@@ -29,5 +31,5 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_pressed("Bumper"):
 		state_machine.transition_to("Shield")
-	
+
 	pass

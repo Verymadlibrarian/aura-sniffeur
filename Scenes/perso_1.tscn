@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://b6yqrost1dcj7" path="res://Scripts/dash.gd" id="11_hgu2h"]
 [ext_resource type="Script" uid="uid://cpf7pbb3pvnsh" path="res://Scripts/run_turn.gd" id="12_58y86"]
 [ext_resource type="Script" uid="uid://cmham1isu3sq2" path="res://Scripts/shield.gd" id="13_6kw3d"]
+[ext_resource type="Script" uid="uid://ckfp8r8lsd5no" path="res://Scripts/crouch.gd" id="14_6nig3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r2bk4"]
 radius = 0.0005
@@ -182,6 +183,9 @@ script = ExtResource("12_58y86")
 
 [node name="Shield" type="Node" parent="Statemachine" unique_id=1186940147]
 script = ExtResource("13_6kw3d")
+
+[node name="Crouch" type="Node" parent="Statemachine" unique_id=1404566907]
+script = ExtResource("14_6nig3")
 
 [node name="PlatteformeCollider" type="RayCast3D" parent="." unique_id=1091858090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.63271356, 0)

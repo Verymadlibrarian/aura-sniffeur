@@ -17,6 +17,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("InitJump")
 	if owner.direction == 0 or direct + owner.direction/abs(owner.direction) == 0 :
 		state_machine.transition_to("RunTurn")
+	
 		
+	
 	owner.velocity.x = owner.direction * owner.sprint_speed
 	pass

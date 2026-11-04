@@ -24,8 +24,6 @@ func physics_update(delta: float) -> void:
 				owner.velocity.x = owner.direction * owner.dash_speed
 				state_machine.frames = 0
 				direct = owner.direction / abs(owner.direction)
-		
-				
 
 	else:
 		if owner.direction != 0:
